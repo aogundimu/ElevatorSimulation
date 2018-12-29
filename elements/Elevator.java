@@ -13,30 +13,85 @@ public class Elevator implements Runnable, Observer, Observable {
 	/**
 	 * 
 	 */
-	private Integer location;
+	private Integer location = null;
 	
 	/**
 	 * 
 	 */
-	private List<Integer> stops = new LinkedList<>();
+	private List<Integer> stops = null; // = new LinkedList<>();
 	
 	/**
 	 * 
 	 */
-	private Direction direction;
+	private Direction direction = null;
 	
 	/**
 	 * 
 	 */
-	private Integer elevatorNumber;
+	private Integer elevatorNumber = null;
 	
 	/**
-	 * The buttons pushed in the elevator
+	 * 
 	 */
-	private List<Integer> buttonsPushed;	
+	public Elevator() {
+		
+	}
 	
+	/**
+	 * 
+	 * @param location
+	 * @param stops
+	 * @param direction
+	 * @param elevatorNumber
+	 */
+	public Elevator(Integer location, List<Integer> stops, Direction direction, Integer elevatorNumber) {
+		super();
+		this.location = location;
+		this.stops = stops;
+		this.direction = direction;
+		this.elevatorNumber = elevatorNumber;
+	}
 
-	
+	/**
+	 * 
+	 * @return
+	 */
+	public Integer getLocation() {
+		return location;
+	}
+
+	/**
+	 * This is the floor on which the Elevator is at the moment.
+	 * @param location
+	 */
+	public void setLocation(Integer location) {
+		this.location = location;
+	}
+
+	public List<Integer> getStops() {
+		return stops;
+	}
+
+	public void setStops(List<Integer> stops) {
+		this.stops = stops;
+	}
+
+	public Direction getDirection() {
+		return direction;
+	}
+
+	public void setDirection(Direction direction) {
+		this.direction = direction;
+	}
+
+	public Integer getElevatorNumber() {
+		return elevatorNumber;
+	}
+
+	public void setElevatorNumber(Integer elevatorNumber) {
+		this.elevatorNumber = elevatorNumber;
+	}
+
 	public void registerObserver(Observer observer) {
 		
 	}
@@ -50,5 +105,8 @@ public class Elevator implements Runnable, Observer, Observable {
 	 */
 	public void run() {
 		
+		while( true ) {
+			
+		}		
 	}
 }

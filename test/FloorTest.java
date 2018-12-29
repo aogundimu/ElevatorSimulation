@@ -15,9 +15,13 @@ class FloorTest {
 		Floor floor1 = new Floor(1);
 		Floor floor2 = new Floor(2);
 		
-		assertTrue( floor1.equals(floor1) );
-		
+		assertTrue( floor1.equals(floor1) );		
 		assertFalse( floor1.equals(floor2) );
+	}
+	
+	@Test
+	void testSome() {
+		
 	}
 
 }

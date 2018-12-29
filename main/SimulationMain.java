@@ -2,8 +2,25 @@ package main;
 
 import java.util.Scanner;
 
+import elements.Building;
+import factories.ElevatorSimulationFactory;
+
 public class SimulationMain {
 
+	
+	private void runSimulation(int numberOfFloors, int numberOfElevators) {
+				
+		
+	}
+	
+	private void initialize(int numberOfFloors, int numberOfElevators) {
+		
+		ElevatorSimulationFactory factory = new ElevatorSimulationFactory();
+		
+		Building building = factory.createBuilding(numberOfFloors, numberOfElevators);
+		
+	}
+	
 	/**
 	 * We need to determine what the input values will be from here. Possible
 	 * entries are shown below 1. How tall is the building? 2. How many elevators
@@ -43,8 +60,5 @@ public class SimulationMain {
 		}
 				
 		sc.close();
-		
-		// Set things up and get the simulation going.
-		//
 	}
 }

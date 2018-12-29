@@ -47,13 +47,20 @@ public class ElevatorController implements Observer, Observable {
 		
 		
 	}
-
+	
+	
+	/**
+	 * 
+	 */
 	@Override
 	public void registerObserver(Observer observer) {
 		// TODO Auto-generated method stub
 		
 	}
-
+	
+	/**
+	 * 
+	 */
 	@Override
 	public void notify(Event event) {
 		// TODO Auto-generated method stub

@@ -6,6 +6,11 @@ import java.util.TreeMap;
 import exceptions.DuplicateFloorException;
 import exceptions.InvalidFloorException;
 
+/**
+ * 
+ * @author Yemi
+ *
+ */
 public class Building {
 
 	/**
