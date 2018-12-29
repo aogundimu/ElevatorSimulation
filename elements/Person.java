@@ -85,6 +85,9 @@ public class Person implements Runnable {
 		this.travelScript = travelScript;
 	}
 
+	/**
+	 * 
+	 */
 	public boolean equals(Object obj) {
 		
 		if ( obj instanceof Person ) {			
@@ -97,6 +100,7 @@ public class Person implements Runnable {
 		
 		return false;
 	}
+	
 	/**
 	 * 
 	 */

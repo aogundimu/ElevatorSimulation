@@ -1,11 +1,13 @@
 package elements;
 
 import notification.Event;
+import notification.Observable;
+import notification.Observer;
 
 /**
  * The ElevatorController acts as the supervisor of all the operators
  */
-public class ElevatorController {
+public class ElevatorController implements Observer, Observable {
 	
 	/**
 	 * 
@@ -41,17 +43,20 @@ public class ElevatorController {
 	/**
 	 * 
 	 */
-	public void initialize() {
+	public void initialize(int numberOfElevators, int numberOfFloors) {
 		
 		
 	}
-	
-	/**
-	 * 
-	 * @param event
-	 */
-	public void buttonPushed(Event event) {
+
+	@Override
+	public void registerObserver(Observer observer) {
+		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void notify(Event event) {
+		// TODO Auto-generated method stub
 		
 	}
 
