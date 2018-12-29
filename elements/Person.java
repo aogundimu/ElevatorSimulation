@@ -85,6 +85,18 @@ public class Person implements Runnable {
 		this.travelScript = travelScript;
 	}
 
+	public boolean equals(Object obj) {
+		
+		if ( obj instanceof Person ) {			
+			if ( obj == this ) {
+				return true;
+			} else if ( ((Person)obj).getName().equals(this.getName()) ) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
 	/**
 	 * 
 	 */
@@ -92,7 +104,6 @@ public class Person implements Runnable {
 		
 		while( true ) {
 			
-		}
-		
+		}		
 	}
 }

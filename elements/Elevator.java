@@ -1,35 +1,53 @@
 package elements;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import general.Direction;
+import notification.Event;
+import notification.Observable;
+import notification.Observer;
 
-public class Elevator implements Runnable {
+public class Elevator implements Runnable, Observer, Observable {
 	
+	/**
+	 * 
+	 */
 	private Integer location;
 	
-	private Integer destination;
+	/**
+	 * 
+	 */
+	private List<Integer> stops = new LinkedList<>();
 	
+	/**
+	 * 
+	 */
 	private Direction direction;
 	
+	/**
+	 * 
+	 */
 	private Integer elevatorNumber;
 	
-	private List<Integer> buttonsPushed;
+	/**
+	 * The buttons pushed in the elevator
+	 */
+	private List<Integer> buttonsPushed;	
 	
+
 	
-	
-	public Elevator(Integer location, Integer destination, Direction direction, Integer elevatorNumber,
-			List<Integer> buttonsPushed) {
-		super();
-		this.location = location;
-		this.destination = destination;
-		this.direction = direction;
-		this.elevatorNumber = elevatorNumber;
-		this.buttonsPushed = buttonsPushed;
+	public void registerObserver(Observer observer) {
+		
 	}
-
-
-
+	
+	public void notify(Event event) {
+		
+	}
+	
+	/**
+	 * 
+	 */
 	public void run() {
 		
 	}
