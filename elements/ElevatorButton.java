@@ -24,10 +24,17 @@ public class ElevatorButton implements Observable {
 	private ElevatorButtonType type;
 	
 	/**
+	 * This is the number printed on the button indicating the floor being selected.
+	 */
+	private Integer floorNumber;
+	
+	/**
 	 * 
 	 */
-	public ElevatorButton() {
+	public ElevatorButton(ElevatorButtonType type, Integer floorNumber) {
 		observers = new ArrayList<>();
+		this.type = type;
+		this.floorNumber = floorNumber;
 	}
 	
 	/**
@@ -42,5 +49,8 @@ public class ElevatorButton implements Observable {
 	 */
 	public void buttonPushed() {
 		
+		if( this.type == ElevatorButtonType.FLOOR_SELECTION ) {
+			
+		}		
 	}
 }

@@ -22,13 +22,21 @@ public class Building {
 	 * 
 	 */
 	Map<Integer, Floor> floors;
+	
+	/**
+	 * 
+	 */
+	Map<Integer, Elevator> elevators;
 
 	/**
 	 * 
 	 */
 	private Building() {
 		floors = new TreeMap<>();
+		elevators = new TreeMap<>();
 	}
+
+	
 
 	/**
 	 * 
@@ -45,6 +53,22 @@ public class Building {
 		}
 
 		return instance;
+	}
+	
+	public Map<Integer, Floor> getFloors() {
+		return floors;
+	}
+
+	public void setFloors(Map<Integer, Floor> floors) {
+		this.floors = floors;
+	}
+
+	public Map<Integer, Elevator> getElevators() {
+		return elevators;
+	}
+
+	public void setElevators(Map<Integer, Elevator> elevators) {
+		this.elevators = elevators;
 	}
 	
 	/**

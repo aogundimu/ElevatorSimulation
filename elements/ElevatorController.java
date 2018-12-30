@@ -40,14 +40,6 @@ public class ElevatorController implements Observer, Observable {
 		return instance;
 	}
 	
-	/**
-	 * 
-	 */
-	public void initialize(int numberOfElevators, int numberOfFloors) {
-		
-		
-	}
-	
 	
 	/**
 	 * 

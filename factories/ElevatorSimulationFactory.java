@@ -1,12 +1,33 @@
 package factories;
 
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+
 import elements.Building;
+import elements.Elevator;
 import elements.Floor;
 import elements.FloorElevatorButton;
 import exceptions.DuplicateFloorException;
+import general.Direction;
 
 public class ElevatorSimulationFactory {
 
+	/**
+	 * 
+	 * @param elevatorNumber
+	 * @return
+	 */
+	private Elevator createElevator(int elevatorNumber, int numberOfFloors) {		
+		Elevator elevator = new Elevator( 1, Direction.IDLE, elevatorNumber, numberOfFloors);
+		return elevator;
+	}
+	
+	/**
+	 * 
+	 * @param floorNumber
+	 * @return
+	 */
 	private Floor createFloor(int floorNumber) {
 		Floor floor = new Floor(floorNumber);
 		FloorElevatorButton febDown = new FloorElevatorButton();
@@ -18,6 +39,12 @@ public class ElevatorSimulationFactory {
 		return floor;
 	}
 
+	/**
+	 * 
+	 * @param numberOfFloors
+	 * @param numberOfElevators
+	 * @return
+	 */
 	public Building createBuilding(int numberOfFloors, int numberOfElevators) {
 
 		Building building = Building.getInstance();
@@ -32,6 +59,14 @@ public class ElevatorSimulationFactory {
 				
 			}
 		}
+		
+		Map<Integer, Elevator> elevators = new TreeMap<>();
+		for( int i = 1; i <= numberOfElevators; ++i) {
+			Elevator elevator = createElevator(i, numberOfFloors);
+			elevators.put(i, elevator);
+		}
+		
+		building.setElevators(elevators);
 
 		return building;
 	}
