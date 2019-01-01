@@ -235,4 +235,9 @@ public class Elevator implements Runnable, Observer, Observable {
 			
 		}		
 	}
+
+	@Override
+	public String toString() {
+		return "Elevator [elevatorNumber=" + elevatorNumber + "]";
+	}
 }

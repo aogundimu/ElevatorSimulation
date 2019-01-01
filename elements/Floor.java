@@ -17,11 +17,6 @@ public class Floor implements Observer, Observable {
 	/**
 	 * 
 	 */
-	private List<Elevator> elevatorsOnFloor;
-	
-	/**
-	 * 
-	 */
 	private int floorNumber;
 	
 	/**
@@ -37,6 +32,11 @@ public class Floor implements Observer, Observable {
 	/**
 	 * 
 	 */
+	private List<Observer> observers;
+	
+	/**
+	 * 
+	 */
 	private final Logger logger = Logger.getLogger( this.getClass().getName() );
 	
 	/**
@@ -46,22 +46,6 @@ public class Floor implements Observer, Observable {
 	public Floor(int floorNumber) {
 		super();
 		this.floorNumber = floorNumber;
-	}
-
-	/**
-	 * 
-	 * @return
-	 */
-	public List<Elevator> getElevatorsOnFloor() {
-		return elevatorsOnFloor;
-	}
-
-	/**
-	 * 
-	 * @param elevatorsOnFloor
-	 */
-	public void setElevatorsOnFloor(List<Elevator> elevatorsOnFloor) {
-		this.elevatorsOnFloor = elevatorsOnFloor;
 	}
 
 	/**
@@ -113,7 +97,7 @@ public class Floor implements Observer, Observable {
 	}	
 	
 	/**
-	 * 
+	 * @return
 	 */
 	public boolean equals(Object obj) {		
 		if ( obj instanceof Floor) {
@@ -130,7 +114,7 @@ public class Floor implements Observer, Observable {
 	}
 	
 	/**
-	 * 
+	 * @param event
 	 */
 	@Override
 	public void notify(Event event) {
@@ -138,10 +122,10 @@ public class Floor implements Observer, Observable {
 	}
 	
 	/**
-	 * 
+	 * @param observer
 	 */
 	@Override
 	public void registerObserver(Observer observer) {
-		
+		observers.add(observer);
 	}
 }

@@ -108,4 +108,11 @@ public class Building {
 		
 		return floor;
 	}
+
+
+
+	@Override
+	public String toString() {
+		return "Building []";
+	}
 }

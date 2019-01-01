@@ -66,4 +66,9 @@ public class ElevatorController implements Observer, Observable {
 		
 	}
 
+	@Override
+	public String toString() {
+		return "ElevatorController []";
+	}
+
 }
