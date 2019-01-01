@@ -1,12 +1,38 @@
 package elements;
 
-public class FloorElevatorButton {
+import java.util.List;
+import java.util.logging.Logger;
+
+import notification.Observable;
+import notification.Observer;
+
+/**
+ * 
+ * @author Yemi
+ *
+ */
+public class FloorElevatorButton implements Observable {
 	
-	public void registerObserver() {
+	/**
+	 * 
+	 */
+	private List<Observer> observers;
+	
+	/**
+	 * 
+	 */
+	private final Logger logger = Logger.getLogger( this.getClass().getName() );
+	
+	/**
+	 * 
+	 */
+	public void buttonPushed() {
 		
 	}
-	
-	public void buttonPushed() {
+
+	@Override
+	public void registerObserver(Observer observer) {
+		// TODO Auto-generated method stub
 		
 	}
 }

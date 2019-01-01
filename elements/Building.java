@@ -2,6 +2,7 @@ package elements;
 
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.logging.Logger;
 
 import exceptions.DuplicateFloorException;
 import exceptions.InvalidFloorException;
@@ -21,12 +22,17 @@ public class Building {
 	/**
 	 * 
 	 */
-	Map<Integer, Floor> floors;
+	private Map<Integer, Floor> floors;
 	
 	/**
 	 * 
 	 */
-	Map<Integer, Elevator> elevators;
+	private Map<Integer, Elevator> elevators;
+	
+	/**
+	 * 
+	 */
+	private final Logger logger = Logger.getLogger( this.getClass().getName() );
 
 	/**
 	 * 

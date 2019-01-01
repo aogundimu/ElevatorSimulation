@@ -12,28 +12,55 @@ import java.util.List;
  */
 public class TravelScript {
 	
+	/**
+	 * 
+	 */
 	private String owner = null;
 	
+	/**
+	 * 
+	 */
 	private List<ScriptItem> scriptItems = null;
 
+	/**
+	 * 
+	 * @param owner
+	 * @param scriptItems
+	 */
 	public TravelScript(String owner, List<ScriptItem> scriptItems) {
 		super();
 		this.owner = owner;
 		this.scriptItems = scriptItems;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public String getOwner() {
 		return owner;
 	}
 
+	/**
+	 * 
+	 * @param owner
+	 */
 	public void setOwner(String owner) {
 		this.owner = owner;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public List<ScriptItem> getScriptItems() {
 		return scriptItems;
 	}
 
+	/**
+	 * 
+	 * @param scriptItems
+	 */
 	public void setScriptItems(List<ScriptItem> scriptItems) {
 		this.scriptItems = scriptItems;
 	}	

@@ -1,5 +1,7 @@
 package elements;
 
+import java.util.logging.Logger;
+
 import notification.Event;
 import notification.Observable;
 import notification.Observer;
@@ -13,6 +15,11 @@ public class ElevatorController implements Observer, Observable {
 	 * 
 	 */
 	private static ElevatorController instance = null;
+	
+	/**
+	 * 
+	 */
+	private final Logger logger = Logger.getLogger( this.getClass().getName() );
 	
 	/**
 	 * 

@@ -1,24 +1,113 @@
 package main;
 
+import java.io.Console;
+import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
 
 import elements.Building;
+import elements.Elevator;
+import elements.ElevatorButton;
+import elements.ElevatorController;
+import elements.Floor;
+import exceptions.InvalidFloorException;
 import factories.ElevatorSimulationFactory;
 
+/**
+ * 
+ * @author Yemi
+ *
+ */
 public class SimulationMain {
-
 	
-	private void runSimulation(int numberOfFloors, int numberOfElevators) {
-				
+	/**
+	 * 
+	 */
+	private Building building; 
+	
+	/**
+	 * 
+	 */
+	private ElevatorController controller;
+
+	/**
+	 * 
+	 */
+	public SimulationMain() {
 		
 	}
 	
-	private void initialize(int numberOfFloors, int numberOfElevators) {
+	/**
+	 * This method gets input 
+	 */
+	private void runSimulation( ) {
 		
-		ElevatorSimulationFactory factory = new ElevatorSimulationFactory();
+		Console console = System.console();
 		
-		Building building = factory.createBuilding(numberOfFloors, numberOfElevators);
+		while(true) {
+			
+		}		
+	}
+	
+	/**
+	 * 
+	 */
+	private void setupNotifications( ) {
 		
+		// The Elevators are all subscribed to the ElevatorController		
+		Map<Integer, Elevator> elevators = building.getElevators();		
+		Set<Integer> keySet = elevators.keySet();
+		for(Integer key : keySet) {
+			Elevator elevator = elevators.get(key);
+			controller.registerObserver( elevator );
+			
+			// The Elevators are all subscribed to their buttons
+			List<ElevatorButton> buttons = elevator.getElevatorButtons();
+			for(ElevatorButton button : buttons) {
+				button.registerObserver(elevator);
+			}
+			
+			// The controller is subscribed to the FloorElevatorButtons
+			Map<Integer,Floor> floors = building.getFloors();
+			Set<Integer> floorKeySet = floors.keySet();
+			for(Integer floorKey : floorKeySet) {
+				try {
+					Floor floor = building.getFloor(floorKey);
+					floor.getUpButton().registerObserver(controller);
+					floor.getDownButton().registerObserver(controller);					
+				} catch(InvalidFloorException e) {
+					
+				}
+			}
+		}				
+	}
+	
+	/**
+	 * 
+	 */
+	private void startElevatorThreads() {
+		
+		Map<Integer, Elevator> elevators = building.getElevators();		
+		Set<Integer> keySet = elevators.keySet();
+		for(Integer key : keySet) {
+			Elevator elevator = elevators.get(key);
+			Thread thread = new Thread(elevator);
+			thread.start();
+		}
+	}
+	
+	/**
+	 * 
+	 * @param numberOfFloors
+	 * @param numberOfElevators
+	 */
+	private void initialize(int numberOfFloors, int numberOfElevators) {		
+		ElevatorSimulationFactory factory = new ElevatorSimulationFactory();		
+		building = factory.createBuilding(numberOfFloors, numberOfElevators);		
+		controller = factory.createController();
+		setupNotifications();
+		startElevatorThreads();
 	}
 	
 	/**
@@ -60,5 +149,9 @@ public class SimulationMain {
 		}
 				
 		sc.close();
+		
+		SimulationMain simulationMain = new SimulationMain();
+		
+		simulationMain.initialize(numberOfFloors, numberOfElevators);
 	}
 }

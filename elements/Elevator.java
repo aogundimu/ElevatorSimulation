@@ -1,15 +1,22 @@
 package elements;
 
 import java.util.ArrayList;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Logger;
 
 import general.Direction;
 import notification.Event;
 import notification.Observable;
 import notification.Observer;
 
+/**
+ * 
+ * @author Yemi
+ *
+ */
 public class Elevator implements Runnable, Observer, Observable {
 	
 	/**
@@ -51,6 +58,11 @@ public class Elevator implements Runnable, Observer, Observable {
 	/**
 	 * 
 	 */
+	private final Logger logger = Logger.getLogger( this.getClass().getName() );
+	
+	/**
+	 * 
+	 */
 	public Elevator() {
 	
 	}
@@ -78,9 +90,11 @@ public class Elevator implements Runnable, Observer, Observable {
 		this.elevatorButtons = new ArrayList<>();
 		this.passengers = new LinkedList<>();
 		for(int i = 1; i <= numberOfFloors; ++i) {
-			ElevatorButton button = new ElevatorButton(ElevatorButtonType.FLOOR_SELECTION, i );
+			ElevatorButton button = new ElevatorFloorRequestButton(i);
 			this.elevatorButtons.add(button);
 		}
+		
+		// The creation of other Elevator Button Types could be done here.
 		this.direction = direction;
 		this.elevatorNumber = elevatorNumber;
 	}
@@ -101,38 +115,73 @@ public class Elevator implements Runnable, Observer, Observable {
 		this.location = location;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public List<Integer> getStops() {
 		return stops;
 	}
 
+	/**
+	 * 
+	 * @param stops
+	 */
 	public void setStops(List<Integer> stops) {
 		this.stops = stops;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public Direction getDirection() {
 		return direction;
 	}
 
+	/**
+	 * 
+	 * @param direction
+	 */
 	public void setDirection(Direction direction) {
 		this.direction = direction;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public Integer getElevatorNumber() {
 		return elevatorNumber;
 	}
 
+	/**
+	 * 
+	 * @param elevatorNumber
+	 */
 	public void setElevatorNumber(Integer elevatorNumber) {
 		this.elevatorNumber = elevatorNumber;
 	}
 
+	/**
+	 * 
+	 * @param floorNumber
+	 */
 	public void addStop(int floorNumber) {
 		this.stops.add(floorNumber);
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public boolean isEmpty() {
 		return passengers.isEmpty();
 	}
 	
+	/**
+	 * 
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -141,6 +190,9 @@ public class Elevator implements Runnable, Observer, Observable {
 		return result;
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -158,13 +210,21 @@ public class Elevator implements Runnable, Observer, Observable {
 		return true;
 	}
 
+	/**
+	 * 
+	 */
 	public synchronized void registerObserver(Observer observer) {
 		
 	}
 	
+	/**
+	 * 
+	 */
+	@Override
 	public synchronized void notify(Event event) {
 		
 	}
+	
 	
 	/**
 	 * 

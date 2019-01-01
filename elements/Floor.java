@@ -1,11 +1,17 @@
 package elements;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import notification.Event;
 import notification.Observable;
 import notification.Observer;
 
+/**
+ * 
+ * @author Yemi
+ *
+ */
 public class Floor implements Observer, Observable {
 	
 	/**
@@ -27,6 +33,11 @@ public class Floor implements Observer, Observable {
 	 * 
 	 */
 	private FloorElevatorButton downButton;	
+	
+	/**
+	 * 
+	 */
+	private final Logger logger = Logger.getLogger( this.getClass().getName() );
 	
 	/**
 	 * 
@@ -118,12 +129,18 @@ public class Floor implements Observer, Observable {
 		}		
 	}
 	
-	
+	/**
+	 * 
+	 */
+	@Override
 	public void notify(Event event) {
 		
 	}
 	
-	
+	/**
+	 * 
+	 */
+	@Override
 	public void registerObserver(Observer observer) {
 		
 	}

@@ -1,5 +1,10 @@
 package elements;
 
+import notification.ElevatorDoorClosed;
+import notification.ElevatorDoorOpened;
+import notification.Event;
+import notification.Observer;
+import notification.ReachedFloorEvent;
 import travelScript.TravelScript;
 
 /**
@@ -7,7 +12,7 @@ import travelScript.TravelScript;
  * @author Yemi
  *
  */
-public class Person implements Runnable {
+public class Person implements Runnable, Observer {
 	
 	/**
 	 * 
@@ -88,6 +93,7 @@ public class Person implements Runnable {
 	/**
 	 * 
 	 */
+	@Override
 	public boolean equals(Object obj) {
 		
 		if ( obj instanceof Person ) {			
@@ -104,10 +110,41 @@ public class Person implements Runnable {
 	/**
 	 * 
 	 */
+	@Override
 	public void run() {
 		
 		while( true ) {
 			
 		}		
+	}
+
+	@Override
+	public void notify(Event event) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	/**
+	 * 
+	 * @param event
+	 */
+	public synchronized void notify( ElevatorDoorClosed event) {
+		
+	}
+	
+	/**
+	 * 
+	 * @param event
+	 */
+	public synchronized void notify( ElevatorDoorOpened event ) {
+		
+	}
+	
+	/**
+	 * 
+	 * @param event
+	 */
+	public synchronized void notify( ReachedFloorEvent event ) {
+		
 	}
 }

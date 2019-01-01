@@ -2,6 +2,7 @@ package elements;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import notification.Observable;
 import notification.Observer;
@@ -11,12 +12,12 @@ import notification.Observer;
  * @author Yemi
  *
  */
-public class ElevatorButton implements Observable {
+public abstract class ElevatorButton implements Observable {
 	
 	/**
 	 * 
 	 */
-	private List<Observer> observers;
+	protected List<Observer> observers;
 	
 	/**
 	 * 
@@ -24,17 +25,16 @@ public class ElevatorButton implements Observable {
 	private ElevatorButtonType type;
 	
 	/**
-	 * This is the number printed on the button indicating the floor being selected.
+	 * 
 	 */
-	private Integer floorNumber;
+	private final Logger logger = Logger.getLogger( this.getClass().getName() );
 	
 	/**
 	 * 
 	 */
-	public ElevatorButton(ElevatorButtonType type, Integer floorNumber) {
+	public ElevatorButton(ElevatorButtonType type) {
 		observers = new ArrayList<>();
-		this.type = type;
-		this.floorNumber = floorNumber;
+		this.type = type;		
 	}
 	
 	/**

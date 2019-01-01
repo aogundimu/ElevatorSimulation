@@ -6,6 +6,7 @@ import java.util.TreeMap;
 
 import elements.Building;
 import elements.Elevator;
+import elements.ElevatorController;
 import elements.Floor;
 import elements.FloorElevatorButton;
 import exceptions.DuplicateFloorException;
@@ -69,5 +70,14 @@ public class ElevatorSimulationFactory {
 		building.setElevators(elevators);
 
 		return building;
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public ElevatorController createController() {
+		ElevatorController controller = ElevatorController.getInstance();
+		return controller;		
 	}
 }
