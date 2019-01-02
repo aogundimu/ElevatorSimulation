@@ -17,10 +17,12 @@ public class ElevatorSimulationFactory {
 	/**
 	 * 
 	 * @param elevatorNumber
+	 * @param numberOfFloors
+	 * @param elevatorCapacity
 	 * @return
 	 */
-	private Elevator createElevator(int elevatorNumber, int numberOfFloors) {		
-		Elevator elevator = new Elevator( 1, Direction.IDLE, elevatorNumber, numberOfFloors);
+	private Elevator createElevator(int elevatorNumber, int numberOfFloors, int elevatorCapacity) {		
+		Elevator elevator = new Elevator( 1, Direction.IDLE, elevatorNumber, numberOfFloors, elevatorCapacity);
 		return elevator;
 	}
 	
@@ -44,9 +46,10 @@ public class ElevatorSimulationFactory {
 	 * 
 	 * @param numberOfFloors
 	 * @param numberOfElevators
+	 * @param elevatorCapacity
 	 * @return
 	 */
-	public Building createBuilding(int numberOfFloors, int numberOfElevators) {
+	public Building createBuilding(int numberOfFloors, int numberOfElevators, int elevatorCapacity) {
 
 		Building building = Building.getInstance();
 
@@ -63,7 +66,7 @@ public class ElevatorSimulationFactory {
 		
 		Map<Integer, Elevator> elevators = new TreeMap<>();
 		for( int i = 1; i <= numberOfElevators; ++i) {
-			Elevator elevator = createElevator(i, numberOfFloors);
+			Elevator elevator = createElevator(i, numberOfFloors, elevatorCapacity);
 			elevators.put(i, elevator);
 		}
 		

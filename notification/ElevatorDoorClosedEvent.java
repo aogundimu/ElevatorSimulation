@@ -5,6 +5,6 @@ package notification;
  * @author Yemi
  *
  */
-public class ElevatorDoorClosed extends Event {
+public class ElevatorDoorClosedEvent extends Event {
 
 }

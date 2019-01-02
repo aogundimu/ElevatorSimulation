@@ -46,7 +46,15 @@ public class SimulationMain {
 		
 		Console console = System.console();
 		
+		console.printf("%s", "For each person needing elevator service, enter the following:");
+		console.printf("%s", "Person name:");
+		console.printf("%s", "For each of the destination enter the following:");
+		console.printf("%s", "floor number, time spent on floor");
+		console.printf("%s", "After all the destination is entered then ");
+		Scanner scan = new Scanner(System.in);
+		
 		while(true) {
+			console.printf("%s", "Enter passenger's name");
 			
 		}		
 	}
@@ -103,9 +111,9 @@ public class SimulationMain {
 	 * @param numberOfFloors
 	 * @param numberOfElevators
 	 */
-	private void initialize(int numberOfFloors, int numberOfElevators) {		
+	private void initialize(int numberOfFloors, int numberOfElevators, int elevatorCapacity) {		
 		ElevatorSimulationFactory factory = new ElevatorSimulationFactory();		
-		building = factory.createBuilding(numberOfFloors, numberOfElevators);		
+		building = factory.createBuilding(numberOfFloors, numberOfElevators, elevatorCapacity);		
 		controller = factory.createController();
 		setupNotifications();
 		startElevatorThreads();
@@ -122,6 +130,7 @@ public class SimulationMain {
 		
 		int numberOfFloors = 0;
 		int numberOfElevators = 0;
+		int elevatorCapacity = 0;
 
 		System.out.println("Welcome to the Elevator Simulation APP!!");
 		System.out.println();
@@ -147,12 +156,25 @@ public class SimulationMain {
 			} else {
 				System.out.println("Invalid entry!!!");
 			}
+		}			
+		
+		while(true) {
+			System.out.println("Enter the elevator capacity - must be an integer \n");
+			System.out.println();
+			if (sc.hasNextInt() ) {
+				elevatorCapacity = sc.nextInt();
+				break;
+			} else {
+				System.out.println("Invalid entry!!!");
+			}
 		}
-				
+		
 		sc.close();
 		
 		SimulationMain simulationMain = new SimulationMain();
 		
-		simulationMain.initialize(numberOfFloors, numberOfElevators);
+		simulationMain.initialize(numberOfFloors, numberOfElevators, elevatorCapacity);
+		
+		simulationMain.runSimulation();
 	}
 }

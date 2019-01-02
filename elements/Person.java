@@ -1,10 +1,12 @@
 package elements;
 
-import notification.ElevatorDoorClosed;
-import notification.ElevatorDoorOpened;
+import notification.ElevatorDoorClosedEvent;
+import notification.ElevatorDoorOpenedEvent;
+import notification.ElevatorExitedEvent;
 import notification.Event;
 import notification.Observer;
 import notification.ReachedFloorEvent;
+import travelScript.ScriptItem;
 import travelScript.TravelScript;
 
 /**
@@ -13,23 +15,22 @@ import travelScript.TravelScript;
  *
  */
 public class Person implements Runnable, Observer {
-	
+
 	/**
 	 * 
 	 */
 	private int location;
-	
-	
+
 	/**
 	 * 
 	 */
 	private String name;
-	
+
 	/**
 	 * 
 	 */
 	private TravelScript travelScript;
-	
+
 	/**
 	 * 
 	 * @return
@@ -77,7 +78,6 @@ public class Person implements Runnable, Observer {
 		this.name = name;
 	}
 
-	
 	/**
 	 * 
 	 * @param name
@@ -95,56 +95,79 @@ public class Person implements Runnable, Observer {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		
-		if ( obj instanceof Person ) {			
-			if ( obj == this ) {
+
+		if (obj instanceof Person) {
+			if (obj == this) {
 				return true;
-			} else if ( ((Person)obj).getName().equals(this.getName()) ) {
+			} else if (((Person) obj).getName().equals(this.getName())) {
 				return true;
 			}
 		}
-		
+
 		return false;
 	}
-	
+
 	/**
 	 * 
 	 */
 	@Override
 	public void run() {
-		
-		while( true ) {
+
+		while (true) {
 			
-		}		
+			// On the first floor
+			
+
+		}
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public void notify(Event event) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 	/**
 	 * 
 	 * @param event
 	 */
-	public synchronized void notify( ElevatorDoorClosed event) {
-		
+	public synchronized void notify(ElevatorDoorClosedEvent event) {
+
 	}
-	
+
 	/**
 	 * 
 	 * @param event
 	 */
-	public synchronized void notify( ElevatorDoorOpened event ) {
+	public synchronized void notify(ElevatorDoorOpenedEvent event) {		
+
+		ScriptItem item = travelScript.getScriptItems().get(0);
+		if ( item.getFloor() == event.getFloorNumber() ) {
+			
+			// Remove the first item from the script
+			travelScript.getScriptItems().remove(0);
+			
+			int elevatorNumber = event.getElevatorNumber();				
+			ElevatorExitedEvent eee = new ElevatorExitedEvent(this);
+			Elevator elevator = Building.getInstance().getElevators().get(elevatorNumber);
+			elevator.notify(eee);
+
+		} else {
+			// Do nothing
+		}
 		
+
 	}
-	
+
 	/**
 	 * 
 	 * @param event
 	 */
-	public synchronized void notify( ReachedFloorEvent event ) {
+	public synchronized void notify(ReachedFloorEvent event) {
 		
+		this.location = event.getFloorNumber();		
 	}
 }

@@ -19,4 +19,13 @@ public class ElevatorFloorRequestButton extends ElevatorButton {
 		super(ElevatorButtonType.FLOOR_SELECTION);
 		this.floorNumber = floorNumber;
 	}
+	
+	public Integer getFloorNumber() {
+		return floorNumber;
+	}
+
+
+	public void setFloorNumber(Integer floorNumber) {
+		this.floorNumber = floorNumber;
+	}
 }

@@ -5,9 +5,13 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 import java.util.logging.Logger;
 
 import general.Direction;
+import notification.ElevatorButtonEvent;
+import notification.ElevatorEnteredEvent;
+import notification.ElevatorExitedEvent;
 import notification.Event;
 import notification.Observable;
 import notification.Observer;
@@ -20,17 +24,17 @@ import notification.Observer;
 public class Elevator implements Runnable, Observer, Observable {
 	
 	/**
-	 * 
+	 * The elevator floor location
 	 */
 	private Integer location = null;
 	
 	/**
-	 * 
+	 * This is the list of stops
 	 */
 	private List<Integer> stops = null; 
 	
 	/**
-	 * 
+	 * The direction in which the elevator is going.
 	 */
 	private Direction direction = null;
 	
@@ -38,6 +42,11 @@ public class Elevator implements Runnable, Observer, Observable {
 	 * 
 	 */
 	private Integer elevatorNumber = null;
+	
+	/**
+	 * 
+	 */
+	private Integer capacity = null;
 	
 	/**
 	 * 
@@ -67,10 +76,18 @@ public class Elevator implements Runnable, Observer, Observable {
 	
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public List<ElevatorButton> getElevatorButtons() {
 		return elevatorButtons;
 	}
 
+	/**
+	 * 
+	 * @param elevatorButtons
+	 */
 	public void setElevatorButtons(List<ElevatorButton> elevatorButtons) {
 		this.elevatorButtons = elevatorButtons;
 	}
@@ -83,12 +100,13 @@ public class Elevator implements Runnable, Observer, Observable {
 	 * @param elevatorNumber
 	 */
 	public Elevator(Integer location, Direction direction, Integer elevatorNumber, 
-											int numberOfFloors) {
+											int numberOfFloors, int elevatorCapacity) {
 		super();
 		this.location = location;
 		this.stops = new LinkedList<>();
 		this.elevatorButtons = new ArrayList<>();
 		this.passengers = new LinkedList<>();
+		this.observers = new TreeSet<>();
 		for(int i = 1; i <= numberOfFloors; ++i) {
 			ElevatorButton button = new ElevatorFloorRequestButton(i);
 			this.elevatorButtons.add(button);
@@ -97,6 +115,7 @@ public class Elevator implements Runnable, Observer, Observable {
 		// The creation of other Elevator Button Types could be done here.
 		this.direction = direction;
 		this.elevatorNumber = elevatorNumber;
+		this.capacity = elevatorCapacity;
 	}
 
 	/**
@@ -175,8 +194,8 @@ public class Elevator implements Runnable, Observer, Observable {
 	 * 
 	 * @return
 	 */
-	public boolean isEmpty() {
-		return passengers.isEmpty();
+	public boolean isFull() {		
+		return ( (capacity - passengers.size()) <= 0 );
 	}
 	
 	/**
@@ -213,8 +232,9 @@ public class Elevator implements Runnable, Observer, Observable {
 	/**
 	 * 
 	 */
+	@Override
 	public synchronized void registerObserver(Observer observer) {
-		
+		this.observers.add(observer);
 	}
 	
 	/**
@@ -225,10 +245,38 @@ public class Elevator implements Runnable, Observer, Observable {
 		
 	}
 	
+	/**
+	 * Increase the number of passengers on the elevator
+	 * 
+	 * @param event
+	 */
+	public synchronized void notify(ElevatorEnteredEvent event) {
+		
+		
+	}
+	
+	/**
+	 * 
+	 * @param event
+	 */
+	public synchronized void notify(ElevatorExitedEvent event) {
+		
+		
+	}
+	
+	/**
+	 * 
+	 * @param event
+	 */
+	public synchronized void notify(ElevatorButtonEvent event) {
+		
+	}
+	
 	
 	/**
 	 * 
 	 */
+	@Override
 	public void run() {
 		
 		while( true ) {

@@ -2,12 +2,23 @@ package notification;
 
 import java.util.logging.Logger;
 
-public class ElevatorButtonEvent extends Event {
+import elements.ElevatorButton;
 
-	private int floorNumber;
+public class ElevatorButtonEvent extends Event {
+	
+	private ElevatorButton button;
 	
 	/**
 	 * 
 	 */
 	private final Logger logger = Logger.getLogger( this.getClass().getName() );
+	
+	/**
+	 * This denotes the pushing of a floor request button while in elevator.
+	 * 
+	 * @param button
+	 */
+	public ElevatorButtonEvent(ElevatorButton button) {
+		this.button = button;
+	}
 }
