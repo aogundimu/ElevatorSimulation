@@ -46,6 +46,8 @@ public class Floor implements Observer, Observable {
 	public Floor(int floorNumber) {
 		super();
 		this.floorNumber = floorNumber;
+		downButton = new FloorElevatorButton();
+		upButton = new FloorElevatorButton();
 	}
 
 	/**

@@ -26,7 +26,7 @@ public class FloorElevatorButton implements Observable {
 	/**
 	 * 
 	 */
-	public void buttonPushed() {
+	public void pushButton() {
 		
 	}
 

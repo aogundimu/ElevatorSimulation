@@ -45,20 +45,33 @@ public class SimulationMain {
 	private void runSimulation( ) {
 		
 		Console console = System.console();
-		
+		/*
 		console.printf("%s", "For each person needing elevator service, enter the following:");
 		console.printf("%s", "Person name:");
 		console.printf("%s", "For each of the destination enter the following:");
 		console.printf("%s", "floor number, time spent on floor");
 		console.printf("%s", "After all the destination is entered then ");
-		Scanner scan = new Scanner(System.in);
+		*/
 		
+		System.out.println("For each person needing elevator service, enter the following:" );
+		System.out.println( "Person name:" );
+		System.out.println( "For each of the destination enter the following:" );
+		System.out.println( "floor number, time spent on floor" );
+		System.out.println( "After all the destination is entered then ");
+		
+		Scanner scan = new Scanner(System.in);		
 		while(true) {
-			console.printf("%s", "Enter passenger's name");
+			//console.printf("%s", "Enter passenger's name");
+			
 			
 		}		
 	}
 	
+	@Override
+	public String toString() {
+		return "SimulationMain []";
+	}
+
 	/**
 	 * 
 	 */

@@ -3,6 +3,7 @@ package factories;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.logging.Logger;
 
 import elements.Building;
 import elements.Elevator;
@@ -13,6 +14,11 @@ import exceptions.DuplicateFloorException;
 import general.Direction;
 
 public class ElevatorSimulationFactory {
+	
+	/**
+	 * 
+	 */
+	private final Logger logger = Logger.getLogger( this.getClass().getName() );
 
 	/**
 	 * 
